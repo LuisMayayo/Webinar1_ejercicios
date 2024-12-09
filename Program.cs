@@ -1,4 +1,4 @@
-﻿using Models;
+﻿﻿using Models;
 
 ProgramaEducativo programa = new ProgramaEducativo();
 
@@ -96,3 +96,28 @@ Console.Write("Introduce el nombre del estudiante que deseas eliminar: ");
 string nombreEstudianteEliminar = Console.ReadLine();
 
 programa.EliminarEstudiante(nombreEstudianteEliminar);
+
+// Buscar estudiantes por parte del nombre
+Console.WriteLine("\n--- Buscar Estudiantes ---");
+Console.Write("Introduce una parte del nombre del estudiante: ");
+string parteDelNombre = Console.ReadLine();
+
+List<Estudiante> estudiantesEncontrados = programa.BuscarEstudiantesPorNombre(parteDelNombre);
+
+if (estudiantesEncontrados.Count > 0)
+{
+    Console.WriteLine("\nEstudiantes encontrados:");
+    foreach (var estudiante in estudiantesEncontrados)
+    {
+        Console.WriteLine(estudiante.Nombre);
+    }
+}
+else
+{
+    Console.WriteLine("No se encontraron estudiantes con ese criterio.");
+}
+
+// Calcular promedio global de los estudiantes
+Console.WriteLine("\n--- Promedio Global ---");
+double promedioGlobal = programa.CalcularPromedioGlobal();
+Console.WriteLine($"El promedio global del programa educativo es: {promedioGlobal:F2}");
