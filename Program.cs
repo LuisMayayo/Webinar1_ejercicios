@@ -1,11 +1,17 @@
 ﻿using Models;
 
 ProgramaEducativo programa = new ProgramaEducativo();
+List<Asignatura> asignaturasGlobales = new List<Asignatura>();
 
 // Crear asignaturas
 Asignatura servidor = new Asignatura("Servidor", 6);
 var cliente = new Asignatura("Cliente", 4);
 Asignatura diseño = new("Diseño", 8);
+
+// Añadir asignaturas a la lista global
+asignaturasGlobales.Add(servidor);
+asignaturasGlobales.Add(cliente);
+asignaturasGlobales.Add(diseño);
 
 // Crear estudiantes
 var estudiante1 = new Estudiante("Vanessa Llorente");
@@ -57,9 +63,8 @@ if (estudianteParaModificar != null)
     string nombreAsignatura = Console.ReadLine();
 
     Asignatura asignaturaParaModificar = null;
-    List<Asignatura> asignaturas = new List<Asignatura> { servidor, cliente, diseño };
 
-    foreach (var asignatura in asignaturas)
+    foreach (var asignatura in asignaturasGlobales)
     {
         if (asignatura.Nombre.Equals(nombreAsignatura, StringComparison.OrdinalIgnoreCase))
         {
@@ -136,4 +141,27 @@ if (estudianteReporte != null)
 else
 {
     Console.WriteLine("Estudiante no encontrado.");
+}
+
+// Añadir nuevas asignaturas
+Console.WriteLine("\n--- Añadir Nueva Asignatura ---");
+Console.Write("Introduce el nombre de la nueva asignatura: ");
+string nuevaAsignaturaNombre = Console.ReadLine();
+
+if (asignaturasGlobales.Exists(a => a.Nombre.Equals(nuevaAsignaturaNombre, StringComparison.OrdinalIgnoreCase)))
+{
+    Console.WriteLine("La asignatura ya existe.");
+}
+else
+{
+    Console.Write("Introduce la cantidad de créditos: ");
+    if (int.TryParse(Console.ReadLine(), out int creditosAsignatura))
+    {
+        asignaturasGlobales.Add(new Asignatura(nuevaAsignaturaNombre, creditosAsignatura));
+        Console.WriteLine($"Asignatura {nuevaAsignaturaNombre} añadida con éxito.");
+    }
+    else
+    {
+        Console.WriteLine("Créditos no válidos.");
+    }
 }
