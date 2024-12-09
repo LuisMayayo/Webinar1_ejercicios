@@ -209,3 +209,18 @@ else
 {
     Console.WriteLine("No hay estudiantes en riesgo de reprobar.");
 }
+
+// Listar asignaturas disponibles
+Console.WriteLine("\n--- Asignaturas Disponibles ---");
+if (asignaturasGlobales.Count > 0)
+{
+    Console.WriteLine("Asignaturas y sus créditos:");
+    foreach (var asignatura in asignaturasGlobales)
+    {
+        Console.WriteLine($"{asignatura.Nombre} - Créditos: {asignatura.Creditos}");
+    }
+}
+else
+{
+    Console.WriteLine("No hay asignaturas registradas.");
+}
