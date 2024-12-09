@@ -16,10 +16,12 @@ asignaturasGlobales.Add(diseño);
 // Crear estudiantes
 var estudiante1 = new Estudiante("Vanessa Llorente");
 Estudiante estudiante2 = new Estudiante("Alejandro Giménez");
+var estudiante3 = new Estudiante("Laura Martínez");
 
 // Añadir estudiantes al programa educativo
 programa.AñadirEstudiante(estudiante1);
 programa.AñadirEstudiante(estudiante2);
+programa.AñadirEstudiante(estudiante3);
 
 // Asignar calificaciones
 estudiante1.AñadirCalificacion(servidor, 9.5);
@@ -28,6 +30,10 @@ estudiante1.AñadirCalificacion(diseño, 9.0);
 
 estudiante2.AñadirCalificacion(servidor, 7.5);
 estudiante2.AñadirCalificacion(cliente, 8.5);
+
+estudiante3.AñadirCalificacion(servidor, 10.0);
+estudiante3.AñadirCalificacion(cliente, 9.0);
+estudiante3.AñadirCalificacion(diseño, 9.5);
 
 // Mostrar estudiantes
 programa.MostrarEstudiantes();
@@ -164,4 +170,24 @@ else
     {
         Console.WriteLine("Créditos no válidos.");
     }
+}
+
+// Mostrar ranking de estudiantes basado en sus promedios
+Console.WriteLine("\n--- Ranking de Estudiantes ---");
+var estudiantesRanking = programa.ObtenerRankingEstudiantes();
+
+if (estudiantesRanking.Count > 0)
+{
+    Console.WriteLine("Ranking de estudiantes (de mayor a menor promedio):");
+    int posicion = 1;
+    foreach (var estudiante in estudiantesRanking)
+    {
+        double promedio = estudiante.CalcularPromedio();
+        Console.WriteLine($"{posicion}. {estudiante.Nombre} - Promedio: {promedio:F2}");
+        posicion++;
+    }
+}
+else
+{
+    Console.WriteLine("No hay estudiantes registrados para calcular el ranking.");
 }
