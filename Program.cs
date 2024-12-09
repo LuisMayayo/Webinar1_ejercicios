@@ -1,4 +1,4 @@
-﻿﻿using Models;
+﻿using Models;
 
 ProgramaEducativo programa = new ProgramaEducativo();
 
@@ -121,3 +121,19 @@ else
 Console.WriteLine("\n--- Promedio Global ---");
 double promedioGlobal = programa.CalcularPromedioGlobal();
 Console.WriteLine($"El promedio global del programa educativo es: {promedioGlobal:F2}");
+
+// Generar reporte detallado de un estudiante
+Console.WriteLine("\n--- Generar Reporte Detallado ---");
+Console.Write("Introduce el nombre del estudiante para generar el reporte: ");
+string nombreReporte = Console.ReadLine();
+
+Estudiante estudianteReporte = programa.ObtenerEstudiante(nombreReporte);
+
+if (estudianteReporte != null)
+{
+    programa.GenerarReporteEstudiante(estudianteReporte);
+}
+else
+{
+    Console.WriteLine("Estudiante no encontrado.");
+}
