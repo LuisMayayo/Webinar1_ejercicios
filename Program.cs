@@ -28,12 +28,12 @@ estudiante1.AñadirCalificacion(servidor, 9.5);
 estudiante1.AñadirCalificacion(cliente, 8.0);
 estudiante1.AñadirCalificacion(diseño, 9.0);
 
-estudiante2.AñadirCalificacion(servidor, 7.5);
-estudiante2.AñadirCalificacion(cliente, 8.5);
+estudiante2.AñadirCalificacion(servidor, 4.5);
+estudiante2.AñadirCalificacion(cliente, 5.0);
 
-estudiante3.AñadirCalificacion(servidor, 10.0);
-estudiante3.AñadirCalificacion(cliente, 9.0);
-estudiante3.AñadirCalificacion(diseño, 9.5);
+estudiante3.AñadirCalificacion(servidor, 3.0);
+estudiante3.AñadirCalificacion(cliente, 4.5);
+estudiante3.AñadirCalificacion(diseño, 4.0);
 
 // Mostrar estudiantes
 programa.MostrarEstudiantes();
@@ -190,4 +190,22 @@ if (estudiantesRanking.Count > 0)
 else
 {
     Console.WriteLine("No hay estudiantes registrados para calcular el ranking.");
+}
+
+// Listar estudiantes en riesgo de reprobar
+Console.WriteLine("\n--- Estudiantes en Riesgo ---");
+var estudiantesEnRiesgo = programa.ObtenerEstudiantesEnRiesgo();
+
+if (estudiantesEnRiesgo.Count > 0)
+{
+    Console.WriteLine("Estudiantes con promedio menor a 5:");
+    foreach (var estudiante in estudiantesEnRiesgo)
+    {
+        double promedio = estudiante.CalcularPromedio();
+        Console.WriteLine($"{estudiante.Nombre} - Promedio: {promedio:F2}");
+    }
+}
+else
+{
+    Console.WriteLine("No hay estudiantes en riesgo de reprobar.");
 }
